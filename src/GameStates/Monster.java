@@ -26,7 +26,7 @@ public class Monster {
             }
             aniL[i] = new Animation(walk[i], 100);
         }
-        hitbox = new Rectangle(x,y,image.getWidth(),image.getHeight());
+        hitbox = new Rectangle(mx,my,image.getWidth(),image.getHeight());
     }
     
     public void draw(){
@@ -36,21 +36,20 @@ public class Monster {
     public void move(int Px, int Py){
         
         if (hitbox.getX() <= Px) {
-            mx+=Px;
+            mx+=1;
             dir = 0;
         }
         if (hitbox.getY() >= Py) {
-            my-=Py;
+            my-=1;
             dir = 0;
         }
         if (hitbox.getX() >= Px) {
-            mx-=Px;
+            mx-=1;
             dir = 1;
         }
         if (hitbox.getY() <= Py) {
-            my+=Py;
+            my+=1;
             dir = 1;
         }
-        
     }
 }
