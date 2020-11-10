@@ -8,10 +8,11 @@ public class GameLauncher extends StateBasedGame {
     public GameLauncher(String title) {
         super(title);
     }
-    
+
     public void initStatesList(GameContainer gc) throws SlickException {
-       this.addState(new StartScreen());
-       this.addState(new MainRoom());
+        //dsthis.addState(new testScreen()); 
+        this.addState(new StartScreen());
+        this.addState(new MainRoom());
     }
 
     public static void main(String args[]) throws SlickException {
@@ -24,4 +25,3 @@ public class GameLauncher extends StateBasedGame {
     }
 
 }
-

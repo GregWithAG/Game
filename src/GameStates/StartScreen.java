@@ -12,7 +12,7 @@ import org.newdawn.slick.state.transition.*;
 public class StartScreen extends BasicGameState {
     Image Title;
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-       Title = new Image("Images/Title.png");
+       Title = new Image("Images/Title_Screen.png");
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException { 
@@ -25,6 +25,7 @@ public class StartScreen extends BasicGameState {
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
        g.drawString("press space",0,0);
+       Title.draw(0,0);
     }
     
     public int getID() {
