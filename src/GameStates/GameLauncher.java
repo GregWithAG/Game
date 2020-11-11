@@ -10,13 +10,14 @@ public class GameLauncher extends StateBasedGame {
     }
 
     public void initStatesList(GameContainer gc) throws SlickException {
-        //dsthis.addState(new testScreen()); 
+        
         this.addState(new StartScreen());
         this.addState(new MainRoom());
+        this.addState(new Death());
     }
 
     public static void main(String args[]) throws SlickException {
-        GameLauncher game = new GameLauncher("Testing Game");
+        GameLauncher game = new GameLauncher("Haunted Hill");
         AppGameContainer app = new AppGameContainer(game);
         app.setDisplayMode(800, 600, false);
         app.setShowFPS(false);

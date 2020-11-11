@@ -1,36 +1,44 @@
 package GameStates;
 
+import java.awt.Font;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.*;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
-public class StartScreen extends BasicGameState {
-    Image Title;
+public class Death extends BasicGameState {
+    
+    private Image image;
+    TrueTypeFont f;
+    
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-       Title = new Image("Images/Title_Screen.png");
+      // image = new Image("Images/test.png");
+      f = new TrueTypeFont(new java.awt.Font("Arial",0,30),true);
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException { 
         Input in = gc.getInput();
-       
+        
         if (in.isKeyDown(Input.KEY_SPACE)) {
-            sbg.enterState(1, new FadeOutTransition(), new FadeInTransition());
+            System.exit(0);
         }
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-       Title.draw(0,0);
-       g.drawString("press space",0,0);
-       
+      // image.draw(0,0);
+      
+      g.drawString("Game Over",350,300);
     }
     
     public int getID() {
-       return 0;  //this id will be different for each screen
+       return 2;
     }
 
     
