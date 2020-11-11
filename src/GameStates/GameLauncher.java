@@ -14,6 +14,7 @@ public class GameLauncher extends StateBasedGame {
         this.addState(new StartScreen());
         this.addState(new MainRoom());
         this.addState(new Death());
+        this.addState(new WinScreen());
     }
 
     public static void main(String args[]) throws SlickException {

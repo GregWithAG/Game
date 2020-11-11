@@ -49,7 +49,7 @@ public class Monster {
 
         if (hitbox.getX() <= Px) {
             xdir = 1;
-            dir = 0;
+            dir = 1;
         }
         if (hitbox.getY() >= Py) {
             ydir = -1;
@@ -57,7 +57,7 @@ public class Monster {
         }
         if (hitbox.getX() >= Px) {
             xdir = -1;
-            dir = 1;
+            dir = 0;
         }
         if (hitbox.getY() <= Py) {
             ydir = 1;

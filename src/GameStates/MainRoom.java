@@ -44,7 +44,7 @@ public class MainRoom extends BasicGameState {
         cx = (int) (Math.random() * 750);
         cy = (int) (Math.random() * 500 + 45);
         chit = new Rectangle(cx,cy,chest.getWidth(),chest.getHeight());
-        hitbox = new Rectangle(guyX,guyY,idle[1].getWidth(),idle[1].getHeight());
+        hitbox = new Rectangle(guyX+30, guyY+30,idle[1].getWidth() - 20,idle[1].getHeight() - 20);
 
     }
 
@@ -84,16 +84,20 @@ public class MainRoom extends BasicGameState {
         if (m.hit(hitbox)) {
             sbg.enterState(2, new FadeOutTransition(), new FadeInTransition());
         }
+        if (points == 10) {
+            sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
+        }
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+        
         g.drawString("Main Game", 0, 0);
         for (int x = 0; x < 800; x += 192) {
             for (int y = 0; y < 600; y += 95) {
                 Floor.draw(x, y);
             }
         }
-        
+        g.drawString("Points: " + points, 700, 0);
         
         if (stop) {
             ani[dir].stop();
@@ -104,6 +108,7 @@ public class MainRoom extends BasicGameState {
         }
         m.draw();
         chest.draw(chit.getX(),chit.getY());
+        
         
     }
 
