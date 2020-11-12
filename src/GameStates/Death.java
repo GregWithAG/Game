@@ -15,11 +15,11 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class Death extends BasicGameState {
     
-    private Image image;
+    //private Image image;
     TrueTypeFont f;
     
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-      // image = new Image("Images/test.png");
+      //image = new Image("EndScreen copy.png");
       f = new TrueTypeFont(new java.awt.Font("Arial",0,30),true);
     }
 
@@ -32,13 +32,13 @@ public class Death extends BasicGameState {
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-      // image.draw(0,0);
+      //image.draw(0,0);
       
       g.drawString("Game Over",350,300);
     }
     
     public int getID() {
-       return 2;
+       return 3;
     }
 
     

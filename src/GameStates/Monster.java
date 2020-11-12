@@ -17,6 +17,7 @@ public class Monster {
     private double speed = 0.5;
 
     public Monster(int x, int y) throws SlickException {
+        
         xdir = 1;
         ydir = 1;
         image = new SpriteSheet("Images/MonsterSheet.png", 61, 42);
@@ -53,7 +54,6 @@ public class Monster {
         }
         if (hitbox.getY() >= Py) {
             ydir = -1;
-            dir = 0;
         }
         if (hitbox.getX() >= Px) {
             xdir = -1;
@@ -61,7 +61,6 @@ public class Monster {
         }
         if (hitbox.getY() <= Py) {
             ydir = 1;
-            dir = 1;
         }
         hitbox.setX(hitbox.getX() + xdir);
         hitbox.setY(hitbox.getY() + ydir);

@@ -13,8 +13,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.*;
 
 public class MainRoom extends BasicGameState {
-
-    Image Floor;
+    Sounder s;
+    Image Floor,wallt,walll,wallr,wallb;
     private SpriteSheet image;
     private Image chest;
     private Animation ani[] = new Animation[4];
@@ -26,13 +26,24 @@ public class MainRoom extends BasicGameState {
     boolean stop = true;
     int points = 0;
     Monster m;
+    int timer;
+
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        timer = 0;
+
+        s = new Sounder("MainMusic.wav");
+        
         Floor = new Image("Images/floor.png");
+        walll = new Image("Images/wall-left.png");
+        wallr = new Image("Images/wall-right.png");
+        wallt = new Image("Images/wall-top.png");
+        wallb = new Image("Images/wall-bottom.png");
         chest = new Image("Images/Chest.png");
         m = new Monster(100, 100);
         image = new SpriteSheet("Images/george.png", 48, 48);
         image.startUse();
+        s.play();
         
         for (int i = 0; i < 4; i++) {
             idle[i] = image.getSubImage(i, 0);
@@ -41,6 +52,7 @@ public class MainRoom extends BasicGameState {
             }
             ani[i] = new Animation(walk[i], 100);
         }
+        
         cx = (int) (Math.random() * 750);
         cy = (int) (Math.random() * 500 + 45);
         chit = new Rectangle(cx,cy,chest.getWidth(),chest.getHeight());
@@ -49,6 +61,9 @@ public class MainRoom extends BasicGameState {
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
+        timer++;
+
+        
         Input in = gc.getInput();
         stop = false;
         
@@ -63,7 +78,7 @@ public class MainRoom extends BasicGameState {
         } else if (in.isKeyDown(Input.KEY_S) && guyY <= 550) {
             guyY += 2;
             dir = 0;
-        } else if (in.isKeyDown(Input.KEY_W) && guyY >= 0) {
+        } else if (in.isKeyDown(Input.KEY_W) && guyY >= 83) {
             guyY -= 2;
             dir = 2;
         } else {
@@ -75,17 +90,17 @@ public class MainRoom extends BasicGameState {
         
         if(chit.intersects(hitbox)){
             cx = (int) (Math.random() * 750);
-            cy = (int) (Math.random() * 500);
+            cy = (int) (Math.random() * 500 + 83);
             points += 1;
             chit.setLocation(cx, cy);
         }
         
         m.move(guyX, guyY);
         if (m.hit(hitbox)) {
-            sbg.enterState(2, new FadeOutTransition(), new FadeInTransition());
+            sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
         }
         if (points == 10) {
-            sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
+            sbg.enterState(4, new FadeOutTransition(), new FadeInTransition());
         }
     }
 
@@ -97,7 +112,10 @@ public class MainRoom extends BasicGameState {
                 Floor.draw(x, y);
             }
         }
-        g.drawString("Points: " + points, 700, 0);
+        for (int i = 0; i < 800; i+=190) {
+            wallt.draw(i,0);
+        }
+        g.drawString("Keys: " + points, 625, 50);
         
         if (stop) {
             ani[dir].stop();
@@ -113,7 +131,7 @@ public class MainRoom extends BasicGameState {
     }
 
     public int getID() {
-        return 1;  //this id will be different for each screen
+        return 2;  //this id will be different for each screen
     }
 
 }

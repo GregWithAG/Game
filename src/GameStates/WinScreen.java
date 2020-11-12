@@ -23,7 +23,7 @@ public class WinScreen extends BasicGameState {
     }
     
     public int getID() {
-       return 3;  //this id will be different for each screen
+       return 4;  //this id will be different for each screen
     }
 
     
